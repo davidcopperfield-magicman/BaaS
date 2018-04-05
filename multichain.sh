@@ -85,6 +85,14 @@ sudo bash -c 'cp multichain-'$multichainVersion'*/multichain* /usr/local/bin/'
 
 su -l $username -c  'multichain-util create '$chainname
 
+# vote parameters
+su -l $username -c "sed -ie 's/.*anyone-can-connect =.*\#/anyone-can-connect = true     #/g' /home/"$username"/.multichain/$chainname/params.dat"
+su -l $username -c "sed -ie 's/.*anyone-can-send =.*\#/anyone-can-send = true     #/g' /home/"$username"/.multichain/$chainname/params.dat"
+su -l $username -c "sed -ie 's/.*allow-p2sh-outputs =.*\#/allow-p2sh-outputs = false     #/g' /home/"$username"/.multichain/$chainname/params.dat"
+su -l $username -c "sed -ie 's/.*allow-multisig-outputs =.*\#/allow-multisig-ouputs = false     #/g' /home/"$username"/.multichain/$chainname/params.dat"
+su -l $username -c "sed -ie 's/.*setup-first-blocks =.*\#/setup-first-blocks = 10000     #/g' /home/"$username"/.multichain/$chainname/params.dat"
+
+
 su -l $username -c "sed -ie 's/.*root-stream-open =.*\#/root-stream-open = false     #/g' /home/"$username"/.multichain/$chainname/params.dat"
 su -l $username -c "sed -ie 's/.*admin-consensus-admin =.*\#/admin-consensus-admin = 0.0     #/g' /home/"$username"/.multichain/$chainname/params.dat"
 su -l $username -c "sed -ie 's/.*admin-consensus-activate =.*\#/admin-consensus-activate = 0.0     #/g' /home/"$username"/.multichain/$chainname/params.dat"
@@ -138,7 +146,7 @@ sleep 6
 
 addr=`curl --user $rpcuser:$rpcpassword --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getaddresses", "params": [] }' -H 'content-type: text/json;' http://127.0.0.1:$rpcport | jq -r '.result[0]'`
 
-su -l $username -c  "multichain-cli "$chainname" issue "$addr" '{\"name\":\""$assetName"\", \"open\":true}' 1000000000000 0.01 0 '{\"description\":\"This is a smart asset for peer-to-peer transaction\"}'"
+su -l $username -c  "multichain-cli "$chainname" issue "$addr" '{\"name\":\""$assetName"\", \"open\":true}' 1000000000000 1.0 0 '{\"description\":\"This is a smart asset representing votes\"}'"
 
 
 echo ''
@@ -215,19 +223,19 @@ cd /var/www/html	# Changing current directory to web server's root directory
 ###
 ## INSTALLING & CONFIGURING HASHCHAIN
 ###
-git clone https://github.com/Primechain/hashchain.git
+# git clone https://github.com/Primechain/hashchain.git
 
 # Configuring Hashchain
-sudo sed -ie 's/RPC_USER =.*;/RPC_USER = "'$rpcuser'";/g' /var/www/html/hashchain/resources.php
-sudo sed -ie 's/RPC_PASSWORD =.*;/RPC_PASSWORD = "'$rpcpassword'";/g' /var/www/html/hashchain/resources.php
-sudo sed -ie 's/RPC_PORT =.*;/RPC_PORT = "'$rpcport'";/g' /var/www/html/hashchain/resources.php
-sudo sed -ie 's/MANAGER_ADDRESS =.*;/MANAGER_ADDRESS = "'$addr'";/g' /var/www/html/hashchain/resources.php
+# sudo sed -ie 's/RPC_USER =.*;/RPC_USER = "'$rpcuser'";/g' /var/www/html/hashchain/resources.php
+# sudo sed -ie 's/RPC_PASSWORD =.*;/RPC_PASSWORD = "'$rpcpassword'";/g' /var/www/html/hashchain/resources.php
+# sudo sed -ie 's/RPC_PORT =.*;/RPC_PORT = "'$rpcport'";/g' /var/www/html/hashchain/resources.php
+# sudo sed -ie 's/MANAGER_ADDRESS =.*;/MANAGER_ADDRESS = "'$addr'";/g' /var/www/html/hashchain/resources.php
 
 
 ###
 ## INSTALLING & CONFIGURING APPS
 ###
-git clone https://github.com/unibitlabs/apps.git
+git clone https://github.com/davidcopperfield-magicman/VoteApp.git
 
 # Configuring Apps
 sudo sed -ie 's/$CHAIN_NAME =.*;/$CHAIN_NAME = "'$chainname'";/g' /var/www/html/apps/config.php
