@@ -13,7 +13,7 @@ source $homedir/.multichain/$chainname/multichain.conf
 
 addr=`curl --user $rpcuser:$rpcpassword --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getaddresses", "params": [] }' -H 'content-type: text/json;' http://127.0.0.1:$rpcport | jq -r '.result[0]'`
 
-su -l $username -c  "multichain-cli "$chainname" issue "$addr" '{\"name\":\""$assetName"\", \"open\":true}' 1000000000000 0.01 0 '{\"description\":\"This is a smart asset for peer-to-peer transactions\"}'"
+su -l $username -c  "multichain-cli "$chainname" issue "$addr" '{\"name\":\""$assetName"\", \"open\":true}' 1000000000000 1.0 0 '{\"description\":\"This is a smart asset for peer-to-peer transactions\"}'"
 
 
 su -l $username -c  "multichain-cli "$chainname" createrawsendfrom "$addr" '{}' '[{\"create\":\"stream\",\"name\":\"users_credentials\",\"open\":false,\"details\":{\"purpose\":\"Stores Users Credentials\"}}]' send"
@@ -50,8 +50,8 @@ cd $webserver_activeDirectory
 git clone https://github.com/davidcopperfield-magicman/VoteApp.git
 
 # Configuring Yobiapps
-sudo sed -ie 's/$CHAIN_NAME =.*;/$CHAIN_NAME = "'$chainname'";/g' $webserver_activeDirectory/apps/config.php
-sudo sed -ie 's/RPC_USER =.*;/RPC_USER = "'$rpcuser'";/g' $webserver_activeDirectory/apps/config.php
-sudo sed -ie 's/RPC_PASSWORD =.*;/RPC_PASSWORD = "'$rpcpassword'";/g' $webserver_activeDirectory/apps/config.php
-sudo sed -ie 's/RPC_PORT =.*;/RPC_PORT = "'$rpcport'";/g' $webserver_activeDirectory/apps/config.php
-sudo sed -ie 's/MANAGER_ADDRESS =.*;/MANAGER_ADDRESS = "'$addr'";/g' $webserver_activeDirectory/apps/config.php
+sudo sed -ie 's/$CHAIN_NAME =.*;/$CHAIN_NAME = "'$chainname'";/g' $webserver_activeDirectory/VoteApp/config.php
+sudo sed -ie 's/RPC_USER =.*;/RPC_USER = "'$rpcuser'";/g' $webserver_activeDirectory/VoteApp/config.php
+sudo sed -ie 's/RPC_PASSWORD =.*;/RPC_PASSWORD = "'$rpcpassword'";/g' $webserver_activeDirectory/VoteApp/config.php
+sudo sed -ie 's/RPC_PORT =.*;/RPC_PORT = "'$rpcport'";/g' $webserver_activeDirectory/VoteApp/config.php
+sudo sed -ie 's/MANAGER_ADDRESS =.*;/MANAGER_ADDRESS = "'$addr'";/g' $webserver_activeDirectory/VoteApp/config.php
