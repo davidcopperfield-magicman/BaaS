@@ -62,7 +62,7 @@ This will:
 
 5. set up Multichain Explorer
 
-6. set up Vote App, a simple blockchain powered app for voting.
+6. set up the Vote App, a simple blockchain powered app for voting.
 
 
 
