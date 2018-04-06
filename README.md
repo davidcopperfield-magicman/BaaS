@@ -44,7 +44,7 @@ The RPC port will be set as `15590` and the Network port will be set as `61172`.
 
 *To access Multichain Exporer, visit `http://<IP Address>:2750`
 
-**To use VoteChain, see the instructions at [https://gitpitch.com/user/repo](https://gitpitch.com/user/repo)
+**To use the Vote App, see the instructions at [https://gitpitch.com/user/repo](https://gitpitch.com/user/repo)
 
 
 
