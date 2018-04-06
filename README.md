@@ -29,13 +29,14 @@ This section presumes that you have root access to the server mentioned above an
     sudo apt-get install git
     sudo git clone https://github.com/davidcopperfield-magicman/VoteChain.git
 
-**Step 2.** Harden the base operating system (Ubuntu 16.04.3 x64). This will also create a new user called [youruser] with the password entered by you below.
+**Step 2.** Harden the base operating system (Ubuntu 16.04.3 x64). 
+This will also create a new user called [youruser] with the password entered by you below.
 
     cd VoteChain
     sudo bash -e hardening.sh <password>
 
-**Step 3.** Install, configure and run the Multichain blockchain and Multichain Exporer. 
-This also sets up the Vote App. 
+**Step 3.** Install, configure & run the Multichain blockchain and then the Multichain Exporer. 
+This will also set up the Vote App. 
 
 The RPC port will be set as `15590` and the Network port will be set as `61172`. 
 
@@ -44,7 +45,7 @@ The RPC port will be set as `15590` and the Network port will be set as `61172`.
 
 *To access Multichain Exporer, visit `http://<IP Address>:2750`
 
-**To use the Vote App, see the instructions at [https://gitpitch.com/user/repo](https://gitpitch.com/user/repo)
+**To use the Vote App, see the instructions at [https://gitpitch.com/davidcopperfield-magicman/Vote-Pitch](https://gitpitch.com/davidcopperfield-magicman/Vote-Pitch)
 
 
 
@@ -56,13 +57,11 @@ This will:
 
 2. set up a Multichain blockchain using a pre-defined configuration
 
-3. set up an FTP server
+3. set up Multichain web demo
 
-4. set up Multichain web demo
+4. set up Multichain Explorer
 
-5. set up Multichain Explorer
-
-6. set up the Vote App, a simple blockchain powered app for voting.
+5. set up the Vote App, a simple blockchain powered app for voting.
 
 
 
