@@ -3,7 +3,7 @@
 
 > WARNING: VoteChain is intended for experimenting and learning, NOT for a production environment.
 
-![Image of VoteChain](http://)
+![Image of VoteChain](https://files.slack.com/files-pri/T5Z3YEK6Y-FA27APEA1/rtp-demo.png)
 
 VoteChain is your very own Blockchain as a Service that operates as a cloud voting prototype.
  
